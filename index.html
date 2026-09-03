@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#ff2e3e" />
+  <meta name="description" content="Pinkream Fresas con Crema — promociones, menú, pedidos y redes sociales." />
+  <title>Pinkream · Fresas con Crema</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-shape bg-shape-a"></div>
+  <div class="bg-shape bg-shape-b"></div>
+  <div class="confetti" aria-hidden="true"></div>
+
+  <main class="site">
+    <header class="topbar">
+      <span class="mini-pill">🍓 FRESAS · CREMA · ANTOJOS</span>
+      <span class="live-dot"><i></i> HOY EN PINKREAM</span>
+    </header>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="script">Tu antojo favorito</p>
+        <h1>¡Que tu día<br><span>se ponga pink!</span></h1>
+        <p class="intro">Fresas con crema, momentos felices y ese antojo que no necesita explicación.</p>
+        <div class="hero-actions">
+          <a class="btn btn-red" href="#promo">Ver promo de hoy <b>↓</b></a>
+          <a class="btn btn-yellow" id="hero-rappi" href="#" target="_blank" rel="noopener">Pedir por Rappi <b>↗</b></a>
+        </div>
+      </div>
+
+      <div class="logo-stage">
+        <div class="sun"></div>
+        <div class="sticker sticker-one">YUM!</div>
+        <div class="sticker sticker-two">♥</div>
+        <div class="logo-card">
+          <img src="assets/pinkream-logo.webp" alt="Pinkream Fresas con Crema" />
+        </div>
+        <div class="burst">FRESCO<br><span>&amp;</span><br>DELICIOSO</div>
+      </div>
+    </section>
+
+    <section id="promo" class="promo-wrap">
+      <div id="promo-card" class="promo-card hidden" aria-live="polite">
+        <div class="promo-ribbon">PROMO DE HOY</div>
+        <div class="promo-inner">
+          <div class="promo-date"><span id="promo-day"></span><b>•</b> SOLO HOY</div>
+          <h2 id="promo-title"></h2>
+          <p id="promo-description"></p>
+          <div class="promo-bottom">
+            <strong id="promo-price"></strong>
+            <a id="promo-cta" class="promo-button" href="#" target="_blank" rel="noopener">QUIERO MI PROMO ↗</a>
+          </div>
+        </div>
+        <div class="promo-strawberry" aria-hidden="true">🍓</div>
+      </div>
+      <div id="no-promo" class="no-promo hidden">
+        <span>♡</span>
+        <div><b>Hoy no hay promo publicada.</b><small>Pero el antojo sí está permitido. 😋</small></div>
+      </div>
+    </section>
+
+    <section class="menu-panel">
+      <div class="section-kicker">TODO EN UN SOLO LUGAR</div>
+      <h2>¿Qué se te antoja?</h2>
+      <div class="quick-grid">
+        <a id="menu-link" class="quick-card big" href="#" target="_blank" rel="noopener">
+          <span class="q-icon">🍓</span><small>DESCUBRE</small><strong>Ver menú</strong><em>Explora nuestros antojos ↗</em>
+        </a>
+        <a id="rappi-link" class="quick-card" href="#" target="_blank" rel="noopener">
+          <span class="q-icon">🛵</span><small>A DOMICILIO</small><strong>Pedir en Rappi</strong><em>Que llegue a tu puerta ↗</em>
+        </a>
+        <a id="review-link" class="quick-card" href="#" target="_blank" rel="noopener">
+          <span class="q-icon">★</span><small>AYÚDANOS A CRECER</small><strong>Déjanos una reseña</strong><em>Cuéntanos qué te pareció ↗</em>
+        </a>
+      </div>
+    </section>
+
+    <section class="social-section">
+      <div class="section-kicker">SÍGUENOS</div>
+      <h2>Nos vemos en tus redes 💗</h2>
+      <div class="social-row">
+        <a id="instagram-link" href="#" target="_blank" rel="noopener"><span>◎</span> Instagram</a>
+        <a id="facebook-link" href="#" target="_blank" rel="noopener"><span>f</span> Facebook</a>
+        <span class="social-disabled"><span>♪</span> TikTok próximamente</span>
+      </div>
+    </section>
+
+    <footer>
+      <img src="assets/pinkream-logo.webp" alt="Pinkream" />
+      <p>Fresas con crema & · mucho amor.</p>
+      <small>© <span id="year"></span> Pinkream</small>
+    </footer>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
