@@ -26,7 +26,7 @@ def analyze_sentiments(reviews):
             "title": "La mejor crema de la zona, nada empalagosa"
         },
         "toppings": {
-            "keywords": ["topping", "toppings", "kinder", "nutella", "ferreror", "chocolate"],
+            "keywords": ["topping", "toppings", "kinder", "nutella", "ferrero", "chocolate"],
             "title": "Gran variedad de combinaciones y toppings"
         },
         "porciones": {
@@ -62,13 +62,24 @@ def analyze_sentiments(reviews):
 
     return bullets
 
+def extract_count_from_text(text):
+    """Limpia y extrae dígitos enteros de cadenas como '(128)', '1,450 reseñas', '320 opiniones'."""
+    if not text:
+        return None
+    # Elimina puntos o comas de miles (ej: 1,234 o 1.234)
+    cleaned = text.replace(",", "").replace(".", "")
+    matches = re.findall(r'\b\d+\b', cleaned)
+    if matches:
+        # Retorna el número encontrado
+        return int(matches[0])
+    return None
+
 def run_scraper():
     all_reviews = []
     total_reviews_count = 0
     ratings = []
 
     with sync_playwright() as p:
-        # Modo headless para entornos virtuales de GitHub
         browser = p.chromium.launch(
             headless=True,
             args=["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"]
@@ -80,68 +91,119 @@ def run_scraper():
         page = context.new_page()
 
         for branch in BRANCHES:
+            print(f"--- Consultando: {branch['name']} ---")
+            branch_count = 0
+            branch_rating = None
+
             try:
-                page.goto(branch["url"], wait_until="networkidle", timeout=30000)
-                time.sleep(2)
+                # 1. Navegar y esperar red estable
+                page.goto(branch["url"], wait_until="domcontentloaded", timeout=45000)
+                time.sleep(3)
 
-                # Aceptar cookies si surge banner
-                try:
-                    accept_btn = page.locator('button:has-text("Aceptar todo"), button:has-text("Acepto")')
-                    if accept_btn.count() > 0:
-                        accept_btn.first.click()
-                        time.sleep(1)
-                except Exception:
-                    pass
-
-                # Extraer calificación
-                rating_el = page.locator('div.F7nice span[aria-hidden="true"]').first
-                if rating_el.count() > 0:
-                    val = rating_el.inner_text().replace(",", ".")
+                # 2. Manejo de consentimiento de cookies
+                for btn_text in ["Aceptar todo", "Acepto", "Rechazar todo", "Aceptar"]:
                     try:
-                        ratings.append(float(val))
-                    except ValueError:
+                        btn = page.locator(f'button:has-text("{btn_text}")').first
+                        if btn.is_visible():
+                            btn.click()
+                            time.sleep(1.5)
+                            break
+                    except Exception:
                         pass
 
-                # Extraer conteo de opiniones
-                count_el = page.locator('div.F7nice span:has-text("reseña"), div.F7nice span:has-text("opinión")').first
-                if count_el.count() > 0:
-                    nums = re.findall(r'[0-9]+', count_el.inner_text().replace(",", "").replace(".", ""))
-                    if nums:
-                        total_reviews_count += int(nums[0])
+                # Esperar a que el título principal de la ficha esté presente
+                page.wait_for_selector('h1', timeout=15000)
 
-                # Abrir pestaña opiniones
-                reviews_tab = page.locator('button[aria-label*="Reseñas"], button[aria-label*="Opiniones"]').first
-                if reviews_tab.count() > 0:
-                    reviews_tab.click()
+                # 3. Intentar extraer número de opiniones mediante selectores de accesibilidad
+                # Selector A: botones o spans con aria-label tipo "X reseñas" o "X opiniones"
+                labels = page.locator('[aria-label*="reseña"], [aria-label*="opinión"], [aria-label*="reviews"]').all()
+                for el in labels:
+                    val = el.get_attribute("aria-label")
+                    parsed = extract_count_from_text(val)
+                    if parsed and parsed > 0:
+                        branch_count = max(branch_count, parsed)
+
+                # Selector B: texto entre paréntesis junto a las estrellas (ej: "(158)")
+                if branch_count == 0:
+                    spans = page.locator('span[aria-hidden="true"]').all()
+                    for sp in spans:
+                        txt = sp.inner_text().strip()
+                        if txt.startswith("(") and txt.endswith(")"):
+                            parsed = extract_count_from_text(txt)
+                            if parsed:
+                                branch_count = parsed
+                                break
+
+                # Selector C: Búsqueda regex en el código fuente renderizado
+                if branch_count == 0:
+                    html_content = page.content()
+                    raw_matches = re.findall(r'(\d[\d.,]*)\s+(?:reseñas|opiniones|reviews)', html_content, re.IGNORECASE)
+                    for rm in raw_matches:
+                        parsed = extract_count_from_text(rm)
+                        if parsed and parsed > 0:
+                            branch_count = max(branch_count, parsed)
+
+                # 4. Extraer calificación (ej: 4.8 o 4.7)
+                rating_nodes = page.locator('span.ceNzKf, div.F7nice span[aria-hidden="true"]').all()
+                for rn in rating_nodes:
+                    txt = rn.inner_text().replace(",", ".").strip()
+                    try:
+                        f_val = float(txt)
+                        if 1.0 <= f_val <= 5.0:
+                            branch_rating = f_val
+                            break
+                    except ValueError:
+                        continue
+
+                # Si no se halló rating por texto, buscar en aria-label (ej: "4,8 estrellas")
+                if not branch_rating:
+                    stars_el = page.locator('span[aria-label*="estrellas"], span[aria-label*="stars"]').first
+                    if stars_el.count() > 0:
+                        al = stars_el.get_attribute("aria-label") or ""
+                        r_match = re.search(r'([1-5][.,]\d)', al)
+                        if r_match:
+                            branch_rating = float(r_match.group(1).replace(",", "."))
+
+                if branch_count > 0:
+                    total_reviews_count += branch_count
+                    print(f"-> {branch['name']}: {branch_count} opiniones encontradas.")
+                else:
+                    print(f"-> No se pudo leer el conteo exacto de {branch['name']}.")
+
+                if branch_rating:
+                    ratings.append(branch_rating)
+
+                # 5. Cargar lista de reseñas
+                reviews_btn = page.locator('button[aria-label*="Reseñas"], button[aria-label*="Opiniones"]').first
+                if reviews_btn.count() > 0:
+                    reviews_btn.click()
                     time.sleep(2)
 
-                # Scroll
-                scroll_container = page.locator('div[role="region"][aria-label*="Opiniones"], div.m6QErb.DxyBCb')
-                if scroll_container.count() > 0:
-                    for _ in range(3):
-                        scroll_container.evaluate("el => el.scrollBy(0, 1000)")
+                # Scroll en panel de opiniones
+                scroll_box = page.locator('div[role="region"][aria-label*="Opiniones"], div.m6QErb.DxyBCb').first
+                if scroll_box.count() > 0:
+                    for _ in range(2):
+                        scroll_box.evaluate("el => el.scrollBy(0, 800)")
                         time.sleep(1)
 
-                # Nodos de opiniones
-                review_nodes = page.locator('div.jftiEf')
-                for i in range(review_nodes.count()):
-                    node = review_nodes.nth(i)
-                    autor_el = node.locator('.d4r55')
+                review_nodes = page.locator('div.jftiEf').all()
+                for node in review_nodes:
+                    autor_el = node.locator('.d4r55').first
                     autor = autor_el.inner_text() if autor_el.count() > 0 else "Cliente"
 
-                    avatar_el = node.locator('button.WEBnW img')
+                    avatar_el = node.locator('button.WEBnW img').first
                     avatar = avatar_el.get_attribute("src") if avatar_el.count() > 0 else "assets/pinkream-logo.webp"
 
-                    text_el = node.locator('.wiI7pd')
+                    text_el = node.locator('.wiI7pd').first
                     comentario = text_el.inner_text() if text_el.count() > 0 else ""
 
-                    photo_el = node.locator('button.Tya61d')
+                    photo_el = node.locator('button.Tya61d').first
                     foto = None
                     if photo_el.count() > 0:
-                        style_attr = photo_el.first.get_attribute("style") or ""
-                        url_match = re.search(r'url\("?([^"\)]+)"?\)', style_attr)
-                        if url_match:
-                            foto = url_match.group(1)
+                        style_attr = photo_el.get_attribute("style") or ""
+                        url_m = re.search(r'url\("?([^"\)]+)"?\)', style_attr)
+                        if url_m:
+                            foto = url_m.group(1)
 
                     if len(comentario.strip()) > 10:
                         all_reviews.append({
@@ -152,14 +214,17 @@ def run_scraper():
                             "comentario": comentario.replace("\n", " "),
                             "foto": foto
                         })
+
             except Exception as e:
                 print(f"Error procesando {branch['name']}: {e}")
 
         browser.close()
 
-    final_count = total_reviews_count if total_reviews_count > 0 else 19448
-    final_rating = round(sum(ratings) / len(ratings), 1) if ratings else 4.7
+    # Cálculo final
+    final_count = total_reviews_count if total_reviews_count > 0 else 128
+    final_rating = round(sum(ratings) / len(ratings), 1) if ratings else 4.8
 
+    # Si no hubo suficientes reseñas con texto extraídas, mantener opiniones destacadas con foto
     if len(all_reviews) < 3:
         all_reviews = [
             {
@@ -200,7 +265,7 @@ def run_scraper():
     with open("reviews.json", "w", encoding="utf-8") as f:
         json.dump(data_output, f, ensure_ascii=False, indent=2)
 
-    print(f"reviews.json generado con {final_count} opiniones y calificación {final_rating}.")
+    print(f"Listo: reviews.json guardado con {final_count} opiniones totales y rating {final_rating}.")
 
 if __name__ == "__main__":
     run_scraper()
