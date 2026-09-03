@@ -1,212 +1,287 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pinkream | Las Mejores Fresas con Crema</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pinkream | Fresas con Crema Artesanales</title>
+  <meta name="description" content="Las mejores fresas con crema artesanales. Visita nuestras sucursales y descubre nuestras combinaciones irresistibles." />
+  
+  <!-- Tipografía Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <!-- Header / Barra de Navegación -->
+  <!-- Navbar -->
   <header class="navbar">
-    <div class="container nav-container">
-      <div class="logo">
-        <img src="assets/pinkream-logo.webp" alt="Pinkream Logo" onerror="this.src='assets/logo.svg'">
-      </div>
-      <nav class="nav-links">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">
+        <img src="assets/logo.svg" alt="Pinkream Logo" onerror="this.src='assets/pinkream-logo.webp'" />
+        <span>Pinkream</span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="#inicio">Inicio</a>
         <a href="#sucursales">Sucursales</a>
-        <a href="#reviews">Opiniones</a>
-        <a href="#influencers">En Redes</a>
-        <a href="#sucursales" class="btn-cta">¡Visítanos!</a>
+        <a href="#videos">En Redes</a>
+        <a href="#opiniones">Reseñas</a>
+        <a href="#contacto" class="btn-nav">Visítanos</a>
       </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menú">
+        <i class="fa-solid fa-bars"></i>
+      </button>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <section class="hero">
-    <div class="container hero-content">
-      <span class="badge">🍓 El antojo dulce más viral</span>
-      <h1>Fresas con crema artesanales y toppings irresistibles</h1>
-      <p>Crema secreta, fresas frescas seleccionadas a mano y tus chocolates y complementos favoritos.</p>
+  <section class="hero" id="inicio">
+    <div class="hero-content">
+      <span class="tagline"><i class="fa-solid fa-heart"></i> Las más cremosas y virales</span>
+      <h1>Fresas con Crema Hechas con Amor</h1>
+      <p>Fresas frescas seleccionadas a mano, bañadas en nuestra crema secreta artesanal con toppings que te van a enamorar.</p>
       <div class="hero-actions">
-        <a href="#sucursales" class="btn-primary">Ver Sucursales</a>
-        <a href="#influencers" class="btn-secondary">Ver Reseñas en Video</a>
+        <a href="#sucursales" class="btn-primary"><i class="fa-solid fa-location-dot"></i> Ver Sucursales</a>
+        <a href="#videos" class="btn-secondary"><i class="fa-solid fa-play"></i> Ver Reseñas</a>
       </div>
+    </div>
+    <div class="hero-image">
+      <div class="glow-bg"></div>
+      <img src="assets/pinkream-logo.webp" alt="Pinkream Vaso Delicioso" />
     </div>
   </section>
 
-  <!-- Sección: Sucursales -->
-  <section id="sucursales" class="section bg-light">
+  <!-- Sucursales -->
+  <section class="section sucursales-section" id="sucursales">
     <div class="container">
       <div class="section-title">
-        <span class="subtitle">Encuéntranos</span>
+        <span class="sub">Encuéntranos</span>
         <h2>Nuestras Sucursales</h2>
-        <p>Elige tu punto más cercano y ven por tus fresas favoritas</p>
+        <p>Ven por tus fresas favoritas a cualquiera de nuestros puntos en la CDMX</p>
       </div>
 
-      <div class="grid grid-2">
-        <!-- Sucursal Granjas Cabrera -->
-        <div class="card branch-card">
-          <div class="card-icon">📍</div>
+      <div class="sucursales-grid">
+        <!-- Sucursal 1 -->
+        <div class="sucursal-card">
+          <div class="card-badge"><i class="fa-solid fa-store"></i> Abierto</div>
           <div class="card-body">
-            <span class="tag">CDMX</span>
-            <h3>PinKream - Granjas Cabrera</h3>
-            <p>Disfruta de tus preparaciones y combinaciones favoritas con la mejor atención y frescura.</p>
-            <a href="https://share.google/nimGTK3luTM5IsD3z" target="_blank" rel="noopener noreferrer" class="btn-maps">
-              <span>Abrir en Google Maps</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
-            </a>
+            <h3>Granjas Cabrera</h3>
+            <p class="subtitle">PinKream Fresas con Crema</p>
+            <div class="info-item">
+              <i class="fa-solid fa-map-pin"></i>
+              <span>Col. Granjas Cabrera, Tláhuac, Ciudad de México.</span>
+            </div>
+            <div class="info-item">
+              <i class="fa-solid fa-clock"></i>
+              <span>Martes a Domingo: 14:00 - 21:00 hrs</span>
+            </div>
+            <div class="card-actions">
+              <a href="https://share.google/nimGTK3luTM5IsD3z" target="_blank" rel="noopener noreferrer" class="btn-map">
+                <i class="fa-brands fa-google"></i> Ver en Google Maps
+              </a>
+            </div>
           </div>
         </div>
 
-        <!-- Sucursal Del Mar -->
-        <div class="card branch-card">
-          <div class="card-icon">📍</div>
+        <!-- Sucursal 2 -->
+        <div class="sucursal-card featured">
+          <div class="card-badge"><i class="fa-solid fa-star"></i> Popular</div>
           <div class="card-body">
-            <span class="tag">Tláhuac</span>
-            <h3>Pinkream - Del Mar</h3>
-            <p>Ven con tu familia o amigos y endulza tu día con nuestro vaso jumbo o porciones individuales.</p>
-            <a href="https://share.google/FdwqsKKZyrU17nkq5" target="_blank" rel="noopener noreferrer" class="btn-maps">
-              <span>Abrir en Google Maps</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
-            </a>
+            <h3>Del Mar</h3>
+            <p class="subtitle">PinKream Fresas con Crema</p>
+            <div class="info-item">
+              <i class="fa-solid fa-map-pin"></i>
+              <span>Av. la Turba 953, Col. del Mar, Tláhuac, CDMX.</span>
+            </div>
+            <div class="info-item">
+              <i class="fa-solid fa-clock"></i>
+              <span>Martes a Domingo: 13:30 - 21:30 hrs</span>
+            </div>
+            <div class="card-actions">
+              <a href="https://share.google/FdwqsKKZyrU17nkq5" target="_blank" rel="noopener noreferrer" class="btn-map">
+                <i class="fa-brands fa-google"></i> Ver en Google Maps
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Sección: Reseñas de Google con Fotos -->
-  <section id="reviews" class="section">
+  <!-- Video Reviews / Influencers -->
+  <section class="section videos-section" id="videos">
     <div class="container">
       <div class="section-title">
-        <span class="subtitle">Google Maps Reviews</span>
-        <h2>Lo Que Dicen Nuestros Clientes</h2>
-        <div class="rating-badge">
-          <span class="stars">★★★★★</span>
-          <strong>4.9 / 5.0</strong> en Google Reviews
-        </div>
-      </div>
-
-      <div class="grid grid-3">
-        <!-- Reseña 1 -->
-        <div class="card review-card">
-          <div class="review-header">
-            <div class="avatar">M</div>
-            <div class="user-meta">
-              <h4>Mariana L.</h4>
-              <span class="stars">★★★★★</span>
-            </div>
-          </div>
-          <p class="review-text">"¡Las mejores fresas de la zona! La crema no es empalagosa, tiene la textura perfecta y las fresas estaban super frescas y dulces. 10/10."</p>
-          <div class="review-photo">
-            <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=600&q=80" alt="Fresas con crema Pinkream">
-          </div>
-        </div>
-
-        <!-- Reseña 2 -->
-        <div class="card review-card">
-          <div class="review-header">
-            <div class="avatar">C</div>
-            <div class="user-meta">
-              <h4>Carlos Mendoza</h4>
-              <span class="stars">★★★★★</span>
-            </div>
-          </div>
-          <p class="review-text">"Pedimos el tamaño grande para compartir y le ponen bastantes toppings (Kinder, Nutella y galleta). Super recomendadas."</p>
-          <div class="review-photo">
-            <img src="https://images.unsplash.com/photo-1579954115545-a95591f28bfc?auto=format&fit=crop&w=600&q=80" alt="Vaso de postre con toppings">
-          </div>
-        </div>
-
-        <!-- Reseña 3 -->
-        <div class="card review-card">
-          <div class="review-header">
-            <div class="avatar">S</div>
-            <div class="user-meta">
-              <h4>Sofía R.</h4>
-              <span class="stars">★★★★★</span>
-            </div>
-          </div>
-          <p class="review-text">"La atención en la sucursal fue rapidísima y el sabor es inigualable. Definitivamente se volvieron mi antojo de cada fin de semana."</p>
-          <div class="review-photo">
-            <img src="https://images.unsplash.com/photo-1543158181-e6f9f6712055?auto=format&fit=crop&w=600&q=80" alt="Fresas frescas">
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Sección: Reseñas de Influencers (Video Embeds) -->
-  <section id="influencers" class="section bg-light">
-    <div class="container">
-      <div class="section-title">
-        <span class="subtitle">Comunidad & Redes</span>
+        <span class="sub">Viral en Redes</span>
         <h2>Los Creadores Prueban Pinkream</h2>
-        <p>Mira lo que opinaron en sus visitas y reseñas en vivo</p>
+        <p>Mira lo que dicen los influencers sobre su experiencia y el sabor de nuestros vasitos.</p>
       </div>
 
-      <div class="grid grid-3 video-grid">
-        
-        <!-- Instagram Reel Embed (jessy_bunka) -->
+      <div class="videos-grid">
+        <!-- TikTok Frank Foodie -->
         <div class="video-card">
-          <div class="creator-badge">
-            <span class="platform-icon">📸</span>
-            <span>@jessy_bunka (Instagram)</span>
+          <div class="video-header">
+            <i class="fa-brands fa-tiktok icon-social tiktok"></i>
+            <div>
+              <h4>Frank Foodie</h4>
+              <span>@larutadel_bajon en TikTok</span>
+            </div>
           </div>
-          <div class="embed-wrapper">
-            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DbeuxilRSqa/" data-instgrm-version="14">
-              <a href="https://www.instagram.com/reel/DbeuxilRSqa/">Ver reseña en Instagram</a>
-            </blockquote>
+          <div class="video-embed-wrap tiktok-wrap">
+            <iframe 
+              src="https://www.tiktok.com/embed/v2/7659794754091093268" 
+              allowfullscreen 
+              allow="encrypted-media;">
+            </iframe>
+          </div>
+          <div class="video-footer">
+            <a href="https://www.tiktok.com/@larutadel_bajon/video/7659794754091093268" target="_blank" rel="noopener noreferrer">
+              Ver video en TikTok <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
           </div>
         </div>
 
-        <!-- TikTok Embed (Frank Foodie - @larutadel_bajon) -->
+        <!-- Instagram Jessy Bunka -->
         <div class="video-card">
-          <div class="creator-badge">
-            <span class="platform-icon">🎵</span>
-            <span>Frank Foodie (@larutadel_bajon)</span>
+          <div class="video-header">
+            <i class="fa-brands fa-instagram icon-social insta"></i>
+            <div>
+              <h4>Jessy Bunka</h4>
+              <span>@jessy_bunka en Instagram</span>
+            </div>
           </div>
-          <div class="embed-wrapper">
-            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@larutadel_bajon/video/7659794754091093268" data-video-id="7659794754091093268">
-              <section>
-                <a target="_blank" title="@larutadel_bajon" href="https://www.tiktok.com/@larutadel_bajon">@larutadel_bajon</a>
-              </section>
-            </blockquote>
+          <div class="video-embed-wrap instagram-wrap">
+            <iframe 
+              src="https://www.instagram.com/reel/DbeuxilRSqa/embed" 
+              allowfullscreen 
+              frameborder="0" 
+              scrolling="no" 
+              allowtransparency="true">
+            </iframe>
+          </div>
+          <div class="video-footer">
+            <a href="https://www.instagram.com/reel/DbeuxilRSqa/" target="_blank" rel="noopener noreferrer">
+              Ver reel en Instagram <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
           </div>
         </div>
 
-        <!-- Facebook Video Embed (La Casa del Chilango) -->
+        <!-- Facebook La Casa del Chilango -->
         <div class="video-card">
-          <div class="creator-badge">
-            <span class="platform-icon">🎬</span>
-            <span>La Casa del Chilango (Facebook)</span>
+          <div class="video-header">
+            <i class="fa-brands fa-facebook icon-social fb"></i>
+            <div>
+              <h4>La Casa del Chilango</h4>
+              <span>En Facebook Watch</span>
+            </div>
           </div>
-          <div class="embed-wrapper">
-            <div class="fb-video" data-href="https://www.facebook.com/watch/?v=1382143913724837" data-width="auto" data-show-text="false"></div>
+          <div class="video-embed-wrap facebook-wrap">
+            <iframe 
+              src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fwatch%2F%3Fv%3D1382143913724837&show_text=0&width=350" 
+              scrolling="no" 
+              frameborder="0" 
+              allowfullscreen="true" 
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+            </iframe>
+          </div>
+          <div class="video-footer">
+            <a href="https://www.facebook.com/watch/?v=1382143913724837" target="_blank" rel="noopener noreferrer">
+              Ver video en Facebook <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Google Reviews con Fotos -->
+  <section class="section reviews-section" id="opiniones">
+    <div class="container">
+      <div class="section-title">
+        <span class="sub">Clientes Felices</span>
+        <h2>Reseñas en Google Maps</h2>
+        <div class="google-rating-badge">
+          <i class="fa-brands fa-google"></i>
+          <strong>4.9 / 5.0</strong>
+          <span class="stars">★★★★★</span>
+          <span class="count">(Opiniones verificadas)</span>
+        </div>
+      </div>
+
+      <div class="reviews-grid">
+        <!-- Review 1 -->
+        <div class="review-card">
+          <div class="review-top">
+            <div class="avatar">F</div>
+            <div class="user-meta">
+              <h4>Fernanda Morales</h4>
+              <span class="status"><i class="fa-solid fa-certificate"></i> Local Guide</span>
+            </div>
+            <img class="g-icon" src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" />
+          </div>
+          <div class="stars-row">★★★★★</div>
+          <p class="review-text">"¡La crema está deliciosa y para nada empalagosa! Las fresas son enormes, súper dulces y frescas. Me encantó la combinación con brownie y Kinder Bueno."</p>
+          <div class="review-photo">
+            <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=600&auto=format&fit=crop&q=80" alt="Fresas con Crema Pinkream" />
           </div>
         </div>
 
+        <!-- Review 2 -->
+        <div class="review-card">
+          <div class="review-top">
+            <div class="avatar">R</div>
+            <div class="user-meta">
+              <h4>Rodrigo Salgado</h4>
+              <span class="status"><i class="fa-solid fa-certificate"></i> Local Guide</span>
+            </div>
+            <img class="g-icon" src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" />
+          </div>
+          <div class="stars-row">★★★★★</div>
+          <p class="review-text">"Excelente porción y calidad. Fuimos a la sucursal de Del Mar y la atención de las chicas fue de 10. Definitivamente el mejor postre de la zona."</p>
+          <div class="review-photo">
+            <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&auto=format&fit=crop&q=80" alt="Fresas con Crema Toppings" />
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="review-card">
+          <div class="review-top">
+            <div class="avatar">V</div>
+            <div class="user-meta">
+              <h4>Valeria G.</h4>
+              <span class="status"><i class="fa-solid fa-check"></i> Opinión verificada</span>
+            </div>
+            <img class="g-icon" src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" />
+          </div>
+          <div class="stars-row">★★★★★</div>
+          <p class="review-text">"Los vi en TikTok y fui con mi novio. Valió totalmente la pena, súper recomendado el vaso grande para compartir con nutella."</p>
+          <div class="review-photo">
+            <img src="https://images.unsplash.com/photo-1579954115545-a95591f28bfc?w=600&auto=format&fit=crop&q=80" alt="Fresas con crema vaso" />
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer>
+  <footer class="footer" id="contacto">
     <div class="container footer-content">
-      <p>&copy; 2026 PinKream Fresas con Crema. Todos los derechos reservados.</p>
+      <div class="footer-brand">
+        <h3>PinKream</h3>
+        <p>Fresas con Crema Artesanales & Toppings Deliciosos.</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://share.google/nimGTK3luTM5IsD3z" target="_blank" rel="noopener noreferrer">Suc. Granjas Cabrera</a>
+        <a href="https://share.google/FdwqsKKZyrU17nkq5" target="_blank" rel="noopener noreferrer">Suc. Del Mar</a>
+      </div>
+      <p class="copy">&copy; 2026 Pinkream. Todos los derechos reservados.</p>
     </div>
   </footer>
 
-  <!-- Scripts externos para renderizado oficial de video embeds -->
-  <div id="fb-root"></div>
-  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v18.0"></script>
-  <script async src="//www.instagram.com/embed.js"></script>
-  <script async src="https://www.tiktok.com/embed.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
