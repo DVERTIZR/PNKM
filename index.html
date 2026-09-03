@@ -1,101 +1,212 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#ff2e3e" />
-  <meta name="description" content="Pinkream Fresas con Crema — promociones, menú, pedidos y redes sociales." />
-  <title>Pinkream · Fresas con Crema</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pinkream | Las Mejores Fresas con Crema</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="bg-shape bg-shape-a"></div>
-  <div class="bg-shape bg-shape-b"></div>
-  <div class="confetti" aria-hidden="true"></div>
 
-  <main class="site">
-    <header class="topbar">
-      <span class="mini-pill">🍓 FRESAS · CREMA · ANTOJOS</span>
-      <span class="live-dot"><i></i> HOY EN PINKREAM</span>
-    </header>
+  <!-- Header / Barra de Navegación -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <div class="logo">
+        <img src="assets/pinkream-logo.webp" alt="Pinkream Logo" onerror="this.src='assets/logo.svg'">
+      </div>
+      <nav class="nav-links">
+        <a href="#sucursales">Sucursales</a>
+        <a href="#reviews">Opiniones</a>
+        <a href="#influencers">En Redes</a>
+        <a href="#sucursales" class="btn-cta">¡Visítanos!</a>
+      </nav>
+    </div>
+  </header>
 
-    <section class="hero">
-      <div class="hero-copy">
-        <p class="script">Tu antojo favorito</p>
-        <h1>¡Que tu día<br><span>se ponga pink!</span></h1>
-        <p class="intro">Fresas con crema, momentos felices y ese antojo que no necesita explicación.</p>
-        <div class="hero-actions">
-          <a class="btn btn-red" href="#promo">Ver promo de hoy <b>↓</b></a>
-          <a class="btn btn-yellow" id="hero-rappi" href="#" target="_blank" rel="noopener">Pedir por Rappi <b>↗</b></a>
-        </div>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-content">
+      <span class="badge">🍓 El antojo dulce más viral</span>
+      <h1>Fresas con crema artesanales y toppings irresistibles</h1>
+      <p>Crema secreta, fresas frescas seleccionadas a mano y tus chocolates y complementos favoritos.</p>
+      <div class="hero-actions">
+        <a href="#sucursales" class="btn-primary">Ver Sucursales</a>
+        <a href="#influencers" class="btn-secondary">Ver Reseñas en Video</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección: Sucursales -->
+  <section id="sucursales" class="section bg-light">
+    <div class="container">
+      <div class="section-title">
+        <span class="subtitle">Encuéntranos</span>
+        <h2>Nuestras Sucursales</h2>
+        <p>Elige tu punto más cercano y ven por tus fresas favoritas</p>
       </div>
 
-      <div class="logo-stage">
-        <div class="sun"></div>
-        <div class="sticker sticker-one">YUM!</div>
-        <div class="sticker sticker-two">♥</div>
-        <div class="logo-card">
-          <img src="assets/pinkream-logo.webp" alt="Pinkream Fresas con Crema" />
-      </div>
-    </section>
-
-    <section id="promo" class="promo-wrap">
-      <div id="promo-card" class="promo-card hidden" aria-live="polite">
-        <div class="promo-ribbon">PROMO DE HOY</div>
-        <div class="promo-inner">
-          <div class="promo-date"><span id="promo-day"></span><b>•</b> SOLO HOY</div>
-          <h2 id="promo-title"></h2>
-          <p id="promo-description"></p>
-          <div class="promo-bottom">
-            <strong id="promo-price"></strong>
-            <a id="promo-cta" class="promo-button" href="#" target="_blank" rel="noopener">QUIERO MI PROMO ↗</a>
+      <div class="grid grid-2">
+        <!-- Sucursal Granjas Cabrera -->
+        <div class="card branch-card">
+          <div class="card-icon">📍</div>
+          <div class="card-body">
+            <span class="tag">CDMX</span>
+            <h3>PinKream - Granjas Cabrera</h3>
+            <p>Disfruta de tus preparaciones y combinaciones favoritas con la mejor atención y frescura.</p>
+            <a href="https://share.google/nimGTK3luTM5IsD3z" target="_blank" rel="noopener noreferrer" class="btn-maps">
+              <span>Abrir en Google Maps</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+            </a>
           </div>
         </div>
-        <div class="promo-strawberry" aria-hidden="true">🍓</div>
-      </div>
-      <div id="no-promo" class="no-promo hidden">
-        <span>♡</span>
-        <div><b>Hoy no hay promo publicada.</b><small>Pero el antojo sí está permitido. 😋</small></div>
-      </div>
-    </section>
 
-    <section class="menu-panel">
-      <div class="section-kicker">TODO EN UN SOLO LUGAR</div>
-      <h2>¿Qué se te antoja?</h2>
-      <div class="quick-grid">
-        <a id="menu-link" class="quick-card big" href="#" target="_blank" rel="noopener">
-          <span class="q-icon">🍓</span><small>DESCUBRE</small><strong>Ver menú</strong><em>Explora nuestros antojos ↗</em>
-        </a>
-        <a id="rappi-link" class="quick-card" href="#" target="_blank" rel="noopener">
-          <span class="q-icon">🛵</span><small>A DOMICILIO</small><strong>Pedir en Rappi</strong><em>Que llegue a tu puerta ↗</em>
-        </a>
-        <a id="review-link" class="quick-card" href="#" target="_blank" rel="noopener">
-          <span class="q-icon">★</span><small>AYÚDANOS A CRECER</small><strong>Déjanos una reseña</strong><em>Cuéntanos qué te pareció ↗</em>
-        </a>
+        <!-- Sucursal Del Mar -->
+        <div class="card branch-card">
+          <div class="card-icon">📍</div>
+          <div class="card-body">
+            <span class="tag">Tláhuac</span>
+            <h3>Pinkream - Del Mar</h3>
+            <p>Ven con tu familia o amigos y endulza tu día con nuestro vaso jumbo o porciones individuales.</p>
+            <a href="https://share.google/FdwqsKKZyrU17nkq5" target="_blank" rel="noopener noreferrer" class="btn-maps">
+              <span>Abrir en Google Maps</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+            </a>
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="social-section">
-      <div class="section-kicker">SÍGUENOS</div>
-      <h2>Nos vemos en tus redes 💗</h2>
-      <div class="social-row">
-        <a id="instagram-link" href="#" target="_blank" rel="noopener"><span>◎</span> Instagram</a>
-        <a id="facebook-link" href="#" target="_blank" rel="noopener"><span>f</span> Facebook</a>
-        <span class="social-disabled"><span>♪</span> TikTok próximamente</span>
+  <!-- Sección: Reseñas de Google con Fotos -->
+  <section id="reviews" class="section">
+    <div class="container">
+      <div class="section-title">
+        <span class="subtitle">Google Maps Reviews</span>
+        <h2>Lo Que Dicen Nuestros Clientes</h2>
+        <div class="rating-badge">
+          <span class="stars">★★★★★</span>
+          <strong>4.9 / 5.0</strong> en Google Reviews
+        </div>
       </div>
-    </section>
 
-    <footer>
-      <img src="assets/pinkream-logo.webp" alt="Pinkream" />
-      <p>Fresas con crema & · mucho amor.</p>
-      <small>© <span id="year"></span> Pinkream</small>
-    </footer>
-  </main>
+      <div class="grid grid-3">
+        <!-- Reseña 1 -->
+        <div class="card review-card">
+          <div class="review-header">
+            <div class="avatar">M</div>
+            <div class="user-meta">
+              <h4>Mariana L.</h4>
+              <span class="stars">★★★★★</span>
+            </div>
+          </div>
+          <p class="review-text">"¡Las mejores fresas de la zona! La crema no es empalagosa, tiene la textura perfecta y las fresas estaban super frescas y dulces. 10/10."</p>
+          <div class="review-photo">
+            <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=600&q=80" alt="Fresas con crema Pinkream">
+          </div>
+        </div>
 
-  <script src="config.js"></script>
+        <!-- Reseña 2 -->
+        <div class="card review-card">
+          <div class="review-header">
+            <div class="avatar">C</div>
+            <div class="user-meta">
+              <h4>Carlos Mendoza</h4>
+              <span class="stars">★★★★★</span>
+            </div>
+          </div>
+          <p class="review-text">"Pedimos el tamaño grande para compartir y le ponen bastantes toppings (Kinder, Nutella y galleta). Super recomendadas."</p>
+          <div class="review-photo">
+            <img src="https://images.unsplash.com/photo-1579954115545-a95591f28bfc?auto=format&fit=crop&w=600&q=80" alt="Vaso de postre con toppings">
+          </div>
+        </div>
+
+        <!-- Reseña 3 -->
+        <div class="card review-card">
+          <div class="review-header">
+            <div class="avatar">S</div>
+            <div class="user-meta">
+              <h4>Sofía R.</h4>
+              <span class="stars">★★★★★</span>
+            </div>
+          </div>
+          <p class="review-text">"La atención en la sucursal fue rapidísima y el sabor es inigualable. Definitivamente se volvieron mi antojo de cada fin de semana."</p>
+          <div class="review-photo">
+            <img src="https://images.unsplash.com/photo-1543158181-e6f9f6712055?auto=format&fit=crop&w=600&q=80" alt="Fresas frescas">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección: Reseñas de Influencers (Video Embeds) -->
+  <section id="influencers" class="section bg-light">
+    <div class="container">
+      <div class="section-title">
+        <span class="subtitle">Comunidad & Redes</span>
+        <h2>Los Creadores Prueban Pinkream</h2>
+        <p>Mira lo que opinaron en sus visitas y reseñas en vivo</p>
+      </div>
+
+      <div class="grid grid-3 video-grid">
+        
+        <!-- Instagram Reel Embed (jessy_bunka) -->
+        <div class="video-card">
+          <div class="creator-badge">
+            <span class="platform-icon">📸</span>
+            <span>@jessy_bunka (Instagram)</span>
+          </div>
+          <div class="embed-wrapper">
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DbeuxilRSqa/" data-instgrm-version="14">
+              <a href="https://www.instagram.com/reel/DbeuxilRSqa/">Ver reseña en Instagram</a>
+            </blockquote>
+          </div>
+        </div>
+
+        <!-- TikTok Embed (Frank Foodie - @larutadel_bajon) -->
+        <div class="video-card">
+          <div class="creator-badge">
+            <span class="platform-icon">🎵</span>
+            <span>Frank Foodie (@larutadel_bajon)</span>
+          </div>
+          <div class="embed-wrapper">
+            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@larutadel_bajon/video/7659794754091093268" data-video-id="7659794754091093268">
+              <section>
+                <a target="_blank" title="@larutadel_bajon" href="https://www.tiktok.com/@larutadel_bajon">@larutadel_bajon</a>
+              </section>
+            </blockquote>
+          </div>
+        </div>
+
+        <!-- Facebook Video Embed (La Casa del Chilango) -->
+        <div class="video-card">
+          <div class="creator-badge">
+            <span class="platform-icon">🎬</span>
+            <span>La Casa del Chilango (Facebook)</span>
+          </div>
+          <div class="embed-wrapper">
+            <div class="fb-video" data-href="https://www.facebook.com/watch/?v=1382143913724837" data-width="auto" data-show-text="false"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-content">
+      <p>&copy; 2026 PinKream Fresas con Crema. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts externos para renderizado oficial de video embeds -->
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v18.0"></script>
+  <script async src="//www.instagram.com/embed.js"></script>
+  <script async src="https://www.tiktok.com/embed.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
