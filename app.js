@@ -193,28 +193,60 @@
     });
   });
 })();
-// Lógica de reseñas automáticas y Fresi AI
+// Lógica de reseñas dinámicas con Fresi AI y Google Badge (Anti-caché)
   const renderGoogleReviews = async () => {
     const userContainer = document.getElementById("user-reviews-container");
     const countEl = document.getElementById("fresi-review-count");
-    if (!userContainer) return;
+    const pointsList = document.getElementById("fresi-summary-points");
+    const ratingEl = document.getElementById("google-badge-rating");
 
     try {
-      const res = await fetch("reviews.json");
-      if (!res.ok) return;
+      // Se agrega timestamp ?t=... y cache: 'no-store' para forzar a leer el reviews.json más reciente
+      const res = await fetch(`reviews.json?t=${Date.now()}`, {
+        cache: "no-store",
+        headers: {
+          "Cache-Control": "no-cache",
+          "Pragma": "no-cache"
+        }
+      });
+      
+      if (!res.ok) {
+        console.warn("No se pudo cargar reviews.json, estatus:", res.status);
+        return;
+      }
 
       const data = await res.json();
       const reviews = Array.isArray(data) ? data : (data.reviews || []);
-      const totalCount = (data.totalCount || 19448).toLocaleString();
+      
+      // Extraer el conteo real (convirtiendo a número)
+      const rawCount = data.totalReviews ?? data.totalCount;
+      const totalCount = rawCount ? Number(rawCount) : null;
+      
+      // Extraer calificación
+      const rating = data.rating ? Number(data.rating) : 4.7;
+      const points = data.aiSummaryPoints || [];
 
-      if (countEl) {
-        countEl.textContent = `Basado en ${totalCount} Google reviews`;
+      // 1. Actualizar texto de Fresi AI
+      if (countEl && totalCount) {
+        countEl.textContent = `Basado en ${totalCount.toLocaleString()} Google reviews`;
       }
 
-      if (reviews.length >= 3) {
+      // 2. Actualizar el número en el sello circular
+      if (ratingEl) {
+        ratingEl.textContent = rating.toFixed(1);
+      }
+
+      // 3. Inyectar los puntos de Fresi AI
+      if (pointsList && Array.isArray(points) && points.length > 0) {
+        pointsList.innerHTML = points
+          .map(point => `<li><span class="pk-check">✓</span> ${point}</li>`)
+          .join("");
+      }
+
+      // 4. Inyectar las opiniones individuales de clientes
+      if (userContainer && reviews.length > 0) {
         userContainer.innerHTML = "";
 
-        // Mostramos las 3 reseñas que acompañan a la de Fresi AI
         reviews.slice(0, 3).forEach((review) => {
           const cardEl = document.createElement("div");
           cardEl.className = "pk-review-card";
@@ -225,13 +257,13 @@
 
           cardEl.innerHTML = `
             <div class="pk-review-header">
-              <img src="${review.avatar || 'assets/pinkream-logo.webp'}" alt="${review.autor}" class="pk-avatar">
+              <img src="${review.avatar || 'assets/pinkream-logo.webp'}" alt="${review.autor || 'Cliente'}" class="pk-avatar">
               <div>
-                <h4 class="pk-reviewer-name">${review.autor}</h4>
-                <div class="pk-stars">★★★★★ <span class="pk-date">• ${review.sucursal}</span></div>
+                <h4 class="pk-reviewer-name">${review.autor || 'Cliente'}</h4>
+                <div class="pk-stars">★★★★★ <span class="pk-date">• ${review.sucursal || 'Google Maps'}</span></div>
               </div>
             </div>
-            <p class="pk-review-text">"${review.comentario}"</p>
+            <p class="pk-review-text">"${review.comentario || ''}"</p>
             ${fotoHtml}
           `;
 
@@ -239,9 +271,13 @@
         });
       }
     } catch (err) {
-      console.error("Error al cargar reseñas:", err);
+      console.error("Error al procesar reviews.json:", err);
     }
   };
 
-  renderGoogleReviews();
-
+  // Asegurar ejecución una vez que el DOM esté listo
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", renderGoogleReviews);
+  } else {
+    renderGoogleReviews();
+  }
