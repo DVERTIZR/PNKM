@@ -193,3 +193,55 @@
     });
   });
 })();
+// Lógica de reseñas automáticas y Fresi AI
+  const renderGoogleReviews = async () => {
+    const userContainer = document.getElementById("user-reviews-container");
+    const countEl = document.getElementById("fresi-review-count");
+    if (!userContainer) return;
+
+    try {
+      const res = await fetch("reviews.json");
+      if (!res.ok) return;
+
+      const data = await res.json();
+      const reviews = Array.isArray(data) ? data : (data.reviews || []);
+      const totalCount = (data.totalCount || 19448).toLocaleString();
+
+      if (countEl) {
+        countEl.textContent = `Basado en ${totalCount} Google reviews`;
+      }
+
+      if (reviews.length >= 3) {
+        userContainer.innerHTML = "";
+
+        // Mostramos las 3 reseñas que acompañan a la de Fresi AI
+        reviews.slice(0, 3).forEach((review) => {
+          const cardEl = document.createElement("div");
+          cardEl.className = "pk-review-card";
+
+          const fotoHtml = review.foto
+            ? `<div class="pk-review-img-wrap"><img src="${review.foto}" class="pk-review-img" alt="Foto cliente"></div>`
+            : "";
+
+          cardEl.innerHTML = `
+            <div class="pk-review-header">
+              <img src="${review.avatar || 'assets/pinkream-logo.webp'}" alt="${review.autor}" class="pk-avatar">
+              <div>
+                <h4 class="pk-reviewer-name">${review.autor}</h4>
+                <div class="pk-stars">★★★★★ <span class="pk-date">• ${review.sucursal}</span></div>
+              </div>
+            </div>
+            <p class="pk-review-text">"${review.comentario}"</p>
+            ${fotoHtml}
+          `;
+
+          userContainer.appendChild(cardEl);
+        });
+      }
+    } catch (err) {
+      console.error("Error al cargar reseñas:", err);
+    }
+  };
+
+  renderGoogleReviews();
+
