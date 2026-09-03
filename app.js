@@ -66,7 +66,7 @@
   setHref("facebook-link", links.facebook);
   setHref("instagram-link", links.instagram);
 
-  // Promoción
+  // Promoción del día
   const card = document.getElementById("promo-card");
   const none = document.getElementById("no-promo");
 
@@ -131,6 +131,51 @@
     }
   }
 
+  // Renderizar reseñas automáticas desde reviews.json
+  const renderReviews = async () => {
+    const container = document.querySelector(".pk-reviews-grid");
+    if (!container) return;
+
+    try {
+      const res = await fetch("reviews.json");
+      if (!res.ok) return;
+
+      const reviews = await res.json();
+      if (!Array.isArray(reviews) || reviews.length === 0) return;
+
+      container.innerHTML = "";
+
+      reviews.slice(0, 6).forEach((review) => {
+        const cardEl = document.createElement("div");
+        cardEl.className = "pk-review-card";
+
+        const fotoHtml = review.foto
+          ? `<div class="pk-review-img-wrap"><img src="${review.foto}" class="pk-review-img" alt="Foto de reseña"></div>`
+          : "";
+
+        const avatarSrc = review.avatar || "assets/logo.svg";
+
+        cardEl.innerHTML = `
+          <div class="pk-review-header">
+            <img src="${avatarSrc}" alt="${review.autor || "Cliente"}" class="pk-avatar">
+            <div>
+              <h4 class="pk-reviewer-name">${review.autor || "Cliente de PinKream"}</h4>
+              <div class="pk-stars">★★★★★ <span class="pk-date">• ${review.sucursal || "Google Maps"}</span></div>
+            </div>
+          </div>
+          <p class="pk-review-text">"${review.comentario || ""}"</p>
+          ${fotoHtml}
+        `;
+
+        container.appendChild(cardEl);
+      });
+    } catch (err) {
+      console.error("Error cargando reviews.json:", err);
+    }
+  };
+
+  renderReviews();
+
   // Año del footer
   const year = document.getElementById("year");
 
@@ -147,5 +192,4 @@
       event.preventDefault();
     });
   });
-
 })();
