@@ -43,6 +43,12 @@ window.PINKREAM_CONFIG = {
     },
 
     sabado: null,
-    domingo: null
+    domingo: {
+      title: "Promo de viernes",
+      description: "Escribe aquí la promoción real de Pinkream para los viernes.",
+      price: "",
+      cta: "QUIERO MI PROMO",
+      url: ""
+    }
   }
 };
