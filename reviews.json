@@ -1,26 +1,36 @@
-[
-  {
-    "sucursal": "Granjas Cabrera",
-    "autor": "Mariana Rdz",
-    "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop",
-    "puntuacion": 5,
-    "comentario": "Las mejores fresas con crema de toda la zona. La crema no es nada empalagosa y la fruta súper fresca.",
-    "foto": "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=600&h=400&fit=crop"
-  },
-  {
-    "sucursal": "Del Mar",
-    "autor": "Carlos Morales",
-    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop",
-    "puntuacion": 5,
-    "comentario": "Excelente porción, el vaso grande viene bien servido con mucho topping de kinder bueno y nutella.",
-    "foto": "https://images.unsplash.com/photo-1587314168485-3236d6710814?w=600&h=400&fit=crop"
-  },
-  {
-    "sucursal": "Granjas Cabrera",
-    "autor": "Fernanda Luna",
-    "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop",
-    "puntuacion": 5,
-    "comentario": "Súper ricas y muy bien presentadas. La atención de las chicas siempre es muy amable.",
-    "foto": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&h=400&fit=crop"
-  }
-]
+{
+  "totalReviews": 19448,
+  "rating": 4.7,
+  "aiSummaryPoints": [
+    "La fresa siempre está fresca y dulce",
+    "Gran variedad de combinaciones y toppings",
+    "Porciones generosas y vasos bien servidos",
+    "La mejor crema de la zona, nada empalagosa"
+  ],
+  "reviews": [
+    {
+      "sucursal": "Granjas Cabrera",
+      "autor": "Mariana Rdz",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop",
+      "puntuacion": 5,
+      "comentario": "Las mejores fresas con crema de toda la zona. La crema no es nada empalagosa y la fruta súper fresca.",
+      "foto": "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=600&h=400&fit=crop"
+    },
+    {
+      "sucursal": "Del Mar",
+      "autor": "Carlos Morales",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop",
+      "puntuacion": 5,
+      "comentario": "Excelente porción, el vaso grande viene bien servido con mucho topping de kinder bueno y nutella.",
+      "foto": "https://images.unsplash.com/photo-1587314168485-3236d6710814?w=600&h=400&fit=crop"
+    },
+    {
+      "sucursal": "Granjas Cabrera",
+      "autor": "Fernanda Luna",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop",
+      "puntuacion": 5,
+      "comentario": "Súper ricas y muy bien presentadas. La atención de las chicas siempre es muy amable.",
+      "foto": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&h=400&fit=crop"
+    }
+  ]
+}
