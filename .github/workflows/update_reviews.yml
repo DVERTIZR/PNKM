@@ -1,15 +1,15 @@
-name: Actualizar Reseñas Automáticas
+name: Actualizar Reseñas con Python Playwright
 
 on:
   schedule:
-    - cron: '0 0 * * 0' # Se ejecuta cada domingo automáticamente
+    - cron: '0 0 * * 0' # Corre solo cada domingo
   workflow_dispatch:     # Permite ejecutarlo a mano desde el botón 'Run workflow'
 
 permissions:
   contents: write
 
 jobs:
-  update-reviews:
+  scrape:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,18 +19,20 @@ jobs:
       - name: Configurar Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.11'
 
-      - name: Instalar requests
-        run: pip install requests
+      - name: Instalar dependencias y Playwright
+        run: |
+          pip install playwright requests
+          playwright install --with-deps chromium
 
-      - name: Extraer opiniones
+      - name: Ejecutar script de extracción
         run: python sync_reviews.py
 
-      - name: Subir cambios al repositorio
+      - name: Guardar y commitear reviews.json en Git
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add reviews.json
-          git commit -m "Auto: Sincronizar opiniones de Google Maps" || exit 0
+          git commit -m "Auto: Actualizar reviews.json desde Google Maps" || exit 0
           git push
