@@ -128,61 +128,82 @@
     </div>
   </section>
 
-  <!-- ==================== SECCIÓN RESEÑAS GOOGLE ==================== -->
+ <!-- ==================== SECCIÓN RESEÑAS GOOGLE ==================== -->
   <section id="opiniones" class="pk-section pk-bg-soft">
     <div class="pk-container">
       <div class="pk-section-header">
-        <span class="pk-badge">Google Reviews</span>
+        <span class="pk-badge">GOOGLE REVIEWS</span>
         <h2 class="pk-title">Lo que dicen nuestros clientes</h2>
-        <div class="pk-rating-summary">
-          <span class="pk-stars">★★★★★</span>
-          <strong>4.9 / 5</strong> en opiniones verificadas
-        </div>
       </div>
 
-      <div class="pk-reviews-grid">
-        <!-- Review 1 -->
-        <div class="pk-review-card">
-          <div class="pk-review-header">
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=faces" alt="Fernanda R." class="pk-avatar">
-            <div>
-              <h4 class="pk-reviewer-name">Fernanda R.</h4>
-              <div class="pk-stars">★★★★★ <span class="pk-date">• Local Guide</span></div>
+      <div class="pk-reviews-grid-layout">
+        <!-- 1. Tarjeta Fresi AI Summary -->
+        <div class="pk-review-card pk-ai-card">
+          <div class="pk-ai-header">
+            <img src="assets/pinkream-logo.webp" alt="PinKream AI" class="pk-avatar pk-ai-avatar">
+            <div class="pk-ai-info">
+              <h4 class="pk-ai-name">Fresi AI Summary</h4>
+              <p class="pk-ai-sub" id="fresi-review-count">Basado en 19,448 Google reviews</p>
             </div>
           </div>
-          <p class="pk-review-text">"¡Las mejores fresas con crema de la zona sin duda! La crema tiene la consistencia perfecta, nada empalagosa, y la fresa súper fresca y dulce. 10/10."</p>
-          <div class="pk-review-img-wrap">
-            <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=600&h=400&fit=crop" alt="Foto de reseña en PinKream" class="pk-review-img">
+
+          <ul class="pk-ai-bullets" id="fresi-summary-points">
+            <li><span class="pk-check">✓</span> La fresa siempre está fresca</li>
+            <li><span class="pk-check">✓</span> La mejor crema que hay por la zona</li>
+            <li><span class="pk-check">✓</span> Gran variedad de toppings</li>
+            <li><span class="pk-check">✓</span> Excelente atención</li>
+          </ul>
+
+          <div class="pk-google-badge">
+            <div class="pk-google-score">4.9</div>
+            <div class="pk-stars">★★★★★</div>
+            <div class="pk-google-brand">Google</div>
           </div>
         </div>
 
-        <!-- Review 2 -->
-        <div class="pk-review-card">
-          <div class="pk-review-header">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=faces" alt="Carlos Méndez" class="pk-avatar">
-            <div>
-              <h4 class="pk-reviewer-name">Carlos Méndez</h4>
-              <div class="pk-stars">★★★★★ <span class="pk-date">• Reseña Google</span></div>
+        <!-- Contenedor donde se inyectan las 3 reseñas de clientes -->
+        <div class="pk-user-reviews-group" id="user-reviews-container">
+          <!-- Fallback estático mientras carga el script -->
+          <div class="pk-review-card">
+            <div class="pk-review-header">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" class="pk-avatar" alt="Mariana Rdz">
+              <div>
+                <h4 class="pk-reviewer-name">Mariana Rdz</h4>
+                <div class="pk-stars">★★★★★ <span class="pk-date">• Granjas Cabrera</span></div>
+              </div>
+            </div>
+            <p class="pk-review-text">"Las mejores fresas con crema de toda la zona. La crema no es nada empalagosa y la fruta súper fresca."</p>
+            <div class="pk-review-img-wrap">
+              <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=600&h=400&fit=crop" class="pk-review-img" alt="Foto cliente">
             </div>
           </div>
-          <p class="pk-review-text">"Probamos el vaso grande con toppings de Nutella y kinder bueno. Las porciones son súper generosas y la atención del personal es muy amable."</p>
-          <div class="pk-review-img-wrap">
-            <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?w=600&h=400&fit=crop" alt="Foto de fresas preparadas" class="pk-review-img">
-          </div>
-        </div>
 
-        <!-- Review 3 -->
-        <div class="pk-review-card">
-          <div class="pk-review-header">
-            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=faces" alt="Mariana S." class="pk-avatar">
-            <div>
-              <h4 class="pk-reviewer-name">Mariana Silva</h4>
-              <div class="pk-stars">★★★★★ <span class="pk-date">• Local Guide</span></div>
+          <div class="pk-review-card">
+            <div class="pk-review-header">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" class="pk-avatar" alt="Carlos Morales">
+              <div>
+                <h4 class="pk-reviewer-name">Carlos Morales</h4>
+                <div class="pk-stars">★★★★★ <span class="pk-date">• Del Mar</span></div>
+              </div>
+            </div>
+            <p class="pk-review-text">"Excelente porción, el vaso grande viene bien servido con mucho topping de kinder bueno y nutella."</p>
+            <div class="pk-review-img-wrap">
+              <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?w=600&h=400&fit=crop" class="pk-review-img" alt="Foto cliente">
             </div>
           </div>
-          <p class="pk-review-text">"La presentación es hermosa e instagrameable, pero lo mejor es el sabor. Si vienen a Tláhuac es una parada obligatoria para un buen antojo."</p>
-          <div class="pk-review-img-wrap">
-            <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&h=400&fit=crop" alt="Vaso PinKream" class="pk-review-img">
+
+          <div class="pk-review-card">
+            <div class="pk-review-header">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" class="pk-avatar" alt="Fernanda Luna">
+              <div>
+                <h4 class="pk-reviewer-name">Fernanda Luna</h4>
+                <div class="pk-stars">★★★★★ <span class="pk-date">• Granjas Cabrera</span></div>
+              </div>
+            </div>
+            <p class="pk-review-text">"Súper ricas y muy bien presentadas. La atención de las chicas siempre es muy amable."</p>
+            <div class="pk-review-img-wrap">
+              <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&h=400&fit=crop" class="pk-review-img" alt="Foto cliente">
+            </div>
           </div>
         </div>
       </div>
