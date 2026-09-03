@@ -18,7 +18,7 @@ window.PINKREAM_CONFIG = {
 
     martes: {
       title: "Promo de martes",
-      description: "Escribe aquí la promoción real de Pinkream para los martes.",
+      description: "Envio gratis por Rappi (Solo Nuevos usuarios)",
       price: "",
       cta: "QUIERO MI PROMO",
       url: ""
@@ -28,7 +28,7 @@ window.PINKREAM_CONFIG = {
 
     jueves: {
       title: "Promo de jueves",
-      description: "Escribe aquí la promoción real de Pinkream para los jueves.",
+      description: "Envio gratis por Rappi (Solo Nuevos usuarios)",
       price: "",
       cta: "QUIERO MI PROMO",
       url: ""
@@ -36,16 +36,17 @@ window.PINKREAM_CONFIG = {
 
     viernes: {
       title: "Promo de viernes",
-      description: "Escribe aquí la promoción real de Pinkream para los viernes.",
+      description: "Envio gratis por Rappi (Solo Nuevos usuarios)",
       price: "",
       cta: "QUIERO MI PROMO",
       url: ""
     },
 
     sabado: null,
+    
     domingo: {
       title: "Promo de viernes",
-      description: "Escribe aquí la promoción real de Pinkream para los viernes.",
+      description: "Envio gratis por Rappi (Solo Nuevos usuarios)",
       price: "",
       cta: "QUIERO MI PROMO",
       url: ""
