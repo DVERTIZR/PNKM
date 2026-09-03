@@ -1,21 +1,18 @@
-// Reinicializa los widgets sociales si se cargan dinámicamente
 document.addEventListener("DOMContentLoaded", () => {
-  // Inicializador para Instagram Embeds
-  if (window.instgrm) {
-    window.instgrm.Widgets.load();
-  }
+  // Menú hamburguesa responsivo
+  const menuToggle = document.getElementById("menuToggle");
+  const navLinks = document.getElementById("navLinks");
 
-  // Desplazamiento suave para los links de navegación
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-      }
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
     });
-  });
+
+    // Cerrar menú al presionar un link
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+      });
+    });
+  }
 });
